@@ -25,29 +25,56 @@ Neste exercício, você irá:
 4. Experimentar outros modelos LLM para ver diferentes saídas.
 5. Para cada etapa, abra uma nova sessão do Copilot Chat clicando no ícone de mais `+` no painel do Copilot Chat.
 
-### Como iniciar este exercício
+## API de Produtos
 
-Simplesmente copie o exercício para sua conta, então dê ao seu Octocat favorito (Mona) **cerca de 20 segundos** para preparar a primeira lição, depois **atualize a página**.
+Esta aplicação contém um backend simples em Node.js que expõe um endpoint de produtos mockados.
 
-[![](https://img.shields.io/badge/Copiar%20Exerc%C3%ADcio-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=dev-pods&template_name=agent-mode-fullstack&owner=%40me&name=agent-mode-fullstack&description=Exercicio:+Construa+aplicacoes+com+modo+agent+do+GitHub+Copilot&visibility=public)
+### Estrutura do projeto
 
-<details>
-<summary>Tendo problemas? 🤷</summary><br/>
+- `app/backend/app.js` - servidor Express com rota `GET /products`
+- `app/backend/package.json` - dependências e script de inicialização
 
-Ao copiar o exercício, recomendamos as seguintes configurações:
+### Sobre a API
 
-- Para proprietário, escolha sua conta pessoal ou uma organização para hospedar o repositório.
+O endpoint `GET /products` retorna um array de produtos com a seguinte estrutura:
 
-- Recomendamos criar um repositório público, pois repositórios privados usarão minutos do Actions.
+- `id` (número)
+- `title` (string)
+- `price` (número)
 
-Se o exercício não estiver pronto em 20 segundos, verifique a aba "Actions" do seu repositório (ou visite `https://github.com/<SEU-USUARIO>/<SEU-REPO>/actions`).
+Exemplo de resposta:
 
-- Verifique se um job está sendo executado. Às vezes simplesmente demora um pouco mais.
+```json
+[
+  { "id": 1, "title": "Produto A", "price": 19.9 },
+  { "id": 2, "title": "Produto B", "price": 29.9 },
+  { "id": 3, "title": "Produto C", "price": 39.9 }
+]
+```
 
-- Se a página mostrar um job que falhou, por favor envie uma issue. Legal, você encontrou um bug! 🐛
+### Como rodar
 
-</details>
+No diretório `app/backend`, execute:
+
+```bash
+npm install
+npm start
+```
+
+O servidor será iniciado em `http://localhost:3000`.
+
+Em seguida, acesse:
+
+```bash
+http://localhost:3000/products
+```
+
+### Pré-requisitos
+
+- Node.js instalado
 
 ---
 
-&copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
+### Observação
+
+O backend usa Express e CORS para permitir requisições de qualquer origem.
